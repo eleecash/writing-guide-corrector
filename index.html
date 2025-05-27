@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B2 English Exam Writing Guide & Corrector</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #6B73FF 0%, #000DFF 100%);
+        }
+        .writing-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        .corrector-output {
+            min-height: 150px;
+            border-left: 4px solid #4F46E5;
+        }
+        .highlight-grammar {
+            background-color: #FEF3C7;
+            border-bottom: 1px dashed #D97706;
+        }
+        .highlight-vocab {
+            background-color: #D1FAE5;
+            border-bottom: 1px dashed #059669;
+        }
+        .highlight-structure {
+            background-color: #E0E7FF;
+            border-bottom: 1px dashed #4F46E5;
+        }
+        .suggestion-tooltip {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            font-size: 12px;
+            white-space: nowrap;
+            display: none;
+        }
+        .highlight:hover .suggestion-tooltip {
+            display: block;
+        }
+        .example-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 1000;
+            overflow-y: auto;
+        }
+        .example-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 20px;
+            border-radius: 8px;
+            width: 80%;
+            max-width: 800px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        .keyword-badge {
+            display: inline-block;
+            background-color: #E0E7FF;
+            color: #4F46E5;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+    <!-- Header -->
+    <header class="gradient-bg text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <h1 class="text-3xl md:text-4xl font-bold mb-2">B2 English Writing Guide</h1>
+                    <p class="text-blue-100">Master your exam writing with structured templates and AI correction</p>
+                </div>
+                <div class="flex items-center space-x-2 bg-white/20 rounded-full px-4 py-2">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>Cambridge & IELTS</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Example Modals -->
+    <div id="opinion-essay-modal" class="example-modal">
+        <div class="example-content">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold">Opinion Essay Example</h3>
+                <button onclick="closeModal('opinion-essay-modal')" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="mb-6">
+                <h4 class="font-semibold mb-2">Keywords for Opinion Essays:</h4>
+                <div>
+                    <span class="keyword-badge">In my opinion</span>
+                    <span class="keyword-badge">I firmly believe</span>
+                    <span class="keyword-badge">On the one hand</span>
+                    <span class="keyword-badge">On the other hand</span>
+                    <span class="keyword-badge">Furthermore</span>
+                    <span class="keyword-badge">Moreover</span>
+                    <span class="keyword-badge">However</span>
+                    <span class="keyword-badge">Nevertheless</span>
+                    <span class="keyword-badge">To conclude</span>
+                    <span class="keyword-badge">In conclusion</span>
+                </div>
+            </div>
+            <div class="bg-gray-50 p-4 rounded mb-4">
+                <h4 class="font-semibold mb-2">Topic: "Some people believe that technology has made our lives easier, while others argue it has made life more complicated. Discuss both views and give your own opinion."</h4>
+                <p class="mb-3"><strong>Introduction:</strong> In recent years, technological advancements have transformed the way we live. While some argue that these developments have simplified our daily routines, others contend that they have added unnecessary complexity. This essay will examine both perspectives before presenting my own viewpoint.</p>
+                <p class="mb-3"><strong>Body 1:</strong> On the one hand, technology has undoubtedly made many aspects of life more convenient. For instance, smartphones allow us to communicate instantly with people across the globe, and online banking has eliminated the need to visit physical branches. Furthermore, household appliances like washing machines and dishwashers have significantly reduced domestic chores.</p>
+                <p class="mb-3"><strong>Body 2:</strong> On the other hand, critics argue that technology has introduced new complications. The constant connectivity can lead to stress and difficulty disconnecting from work. Moreover, the rapid pace of technological change means people must continually learn new skills, which can be overwhelming for some. Additionally, concerns about data privacy and security have emerged as significant issues.</p>
+                <p class="mb-3"><strong>Conclusion:</strong> In my opinion, while technology has certainly introduced some complexities, the benefits far outweigh the drawbacks. The key is to use technology mindfully and establish healthy boundaries. Ultimately, technological progress has made our lives predominantly easier rather than more complicated.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="formal-letter-modal" class="example-modal">
+        <div class="example-content">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold">Formal Letter Example</h3>
+                <button onclick="closeModal('formal-letter-modal')" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="mb-6">
+                <h4 class="font-semibold mb-2">Keywords for Formal Letters:</h4>
+                <div>
+                    <span class="keyword-badge">Dear Sir/Madam</span>
+                    <span class="keyword-badge">Yours faithfully</span>
+                    <span class="keyword-badge">Yours sincerely</span>
+                    <span class="keyword-badge">I am writing to</span>
+                    <span class="keyword-badge">I would like to</span>
+                    <span class="keyword-badge">I would be grateful if</span>
+                    <span class="keyword-badge">I look forward to</span>
+                    <span class="keyword-badge">With reference to</span>
+                    <span class="keyword-badge">Regarding</span>
+                    <span class="keyword-badge">Furthermore</span>
+                </div>
+            </div>
+            <div class="bg-gray-50 p-4 rounded mb-4">
+                <h4 class="font-semibold mb-2">Topic: "Write a letter to the manager of a local sports center complaining about the poor facilities and suggesting improvements."</h4>
+                <p class="mb-3">23 Park Avenue<br>Manchester<br>M15 6TF<br>June 12, 2023</p>
+                <p class="mb-3">The Manager<br>City Sports Center<br>Manchester<br>M15 8PL</p>
+                <p class="mb-3">Dear Sir/Madam,</p>
+                <p class="mb-3"><strong>Subject:</strong> Complaint about sports center facilities</p>
+                <p class="mb-3">I am writing to express my dissatisfaction with the current state of the facilities at City Sports Center, of which I have been a member for three years.</p>
+                <p class="mb-3">Firstly, many of the exercise machines in the gym are outdated and frequently out of order. The swimming pool changing rooms are often unclean, and the showers have been leaking for several weeks. Furthermore, the air conditioning in the main hall appears not to be working properly, making the environment uncomfortable during peak hours.</p>
+                <p class="mb-3">I would like to suggest several improvements: replacing the oldest gym equipment, increasing cleaning staff during busy periods, and conducting regular maintenance checks on all facilities. I would be grateful if you could inform me of any plans to address these issues.</p>
+                <p class="mb-3">I look forward to hearing from you regarding this matter. Please contact me at the above address or by email at j.smith@email.com.</p>
+                <p class="mb-3">Yours faithfully,<br>John Smith</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="review-modal" class="example-modal">
+        <div class="example-content">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold">Review Example</h3>
+                <button onclick="closeModal('review-modal')" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="mb-6">
+                <h4 class="font-semibold mb-2">Keywords for Reviews:</h4>
+                <div>
+                    <span class="keyword-badge">The plot revolves around</span>
+                    <span class="keyword-badge">What I liked most</span>
+                    <span class="keyword-badge">The main character</span>
+                    <span class="keyword-badge">One drawback was</span>
+                    <span class="keyword-badge">I would recommend</span>
+                    <span class="keyword-badge">The setting</span>
+                    <span class="keyword-badge">The highlight</span>
+                    <span class="keyword-badge">The most impressive</span>
+                    <span class="keyword-badge">On the negative side</span>
+                    <span class="keyword-badge">All in all</span>
+                </div>
+            </div>
+            <div class="bg-gray-50 p-4 rounded mb-4">
+                <h4 class="font-semibold mb-2">Topic: "Write a review of a book you have read recently."</h4>
+                <h3 class="text-lg font-bold mb-2">Review of "The Midnight Library" by Matt Haig</h3>
+                <p class="mb-3">Have you ever wondered what your life would be like if you had made different choices? This is the fascinating premise of Matt Haig's thought-provoking novel, "The Midnight Library."</p>
+                <p class="mb-3">The plot revolves around Nora Seed, a woman who finds herself in a magical library between life and death. Each book represents a different version of her life that could have been, had she made alternative decisions. What I liked most about this novel was how it explores profound philosophical questions while remaining accessible and engaging.</p>
+                <p class="mb-3">The main character, Nora, is beautifully developed. Her emotional journey from despair to self-discovery is both moving and inspiring. The setting of the midnight library itself is wonderfully imaginative, with its endless shelves and mysterious librarian.</p>
+                <p class="mb-3">One drawback was that some of the alternate lives felt slightly rushed, and I would have liked to explore a few of them in more depth. However, this is a minor criticism of an otherwise excellent book.</p>
+                <p class="mb-3">I would recommend "The Midnight Library" to anyone who enjoys contemporary fiction with a touch of magic. It's particularly suitable for readers who appreciate stories about second chances and the meaning of life. The most impressive aspect is how Haig manages to combine deep themes with a page-turning narrative.</p>
+                <p class="mb-3">All in all, this is a captivating read that will stay with you long after you've turned the final page. I give it 4.5 out of 5 stars.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="article-modal" class="example-modal">
+        <div class="example-content">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold">Article Example</h3>
+                <button onclick="closeModal('article-modal')" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="mb-6">
+                <h4 class="font-semibold mb-2">Keywords for Articles:</h4>
+                <div>
+                    <span class="keyword-badge">Nowadays</span>
+                    <span class="keyword-badge">It is widely believed</span>
+                    <span class="keyword-badge">Recent research shows</span>
+                    <span class="keyword-badge">According to experts</span>
+                    <span class="keyword-badge">On the contrary</span>
+                    <span class="keyword-badge">For instance</span>
+                    <span class="keyword-badge">In addition</span>
+                    <span class="keyword-badge">As a result</span>
+                    <span class="keyword-badge">To sum up</span>
+                    <span class="keyword-badge">In my view</span>
+                </div>
+            </div>
+            <div class="bg-gray-50 p-4 rounded mb-4">
+                <h3 class="text-lg font-bold mb-2">The Benefits of Learning a Second Language</h3>
+                <p class="mb-3">Nowadays, in our increasingly interconnected world, the ability to speak more than one language has become more valuable than ever. But what exactly are the advantages of being bilingual or multilingual?</p>
+                <p class="mb-3">Recent research shows that learning a second language offers numerous cognitive benefits. According to experts at the University of Edinburgh, bilingual individuals often demonstrate better problem-solving skills and improved memory. In addition, studies suggest that speaking multiple languages may delay the onset of dementia in later life.</p>
+                <p class="mb-3">From a professional perspective, being multilingual can open doors to exciting career opportunities. Many international companies actively seek employees who can communicate with clients and colleagues in different languages. For instance, a survey by the European Commission found that 61% of businesses consider language skills when making hiring decisions.</p>
+                <p class="mb-3">On a personal level, learning another language allows you to connect with people from different cultures. It enables you to travel more confidently and appreciate foreign literature, films, and music in their original form. As a result, many language learners report feeling more open-minded and culturally aware.</p>
+                <p class="mb-3">To sum up, the benefits of learning a second language extend far beyond simple communication. Whether for brain health, career advancement, or personal growth, investing time in language learning is undoubtedly worthwhile. In my view, everyone should try to learn at least one foreign language - you never know where it might take you!</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="report-modal" class="example-modal">
+        <div class="example-content">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold">Report Example</h3>
+                <button onclick="closeModal('report-modal')" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="mb-6">
+                <h4 class="font-semibold mb-2">Keywords for Reports:</h4>
+                <div>
+                    <span class="keyword-badge">The purpose of this report</span>
+                    <span class="keyword-badge">It was found that</span>
+                    <span class="keyword-badge">The majority of</span>
+                    <span class="keyword-badge">A significant number</span>
+                    <span class="keyword-badge">According to the data</span>
+                    <span class="keyword-badge">In contrast</span>
+                    <span class="keyword-badge">The findings indicate</span>
+                    <span class="keyword-badge">It is recommended that</span>
+                    <span class="keyword-badge">Based on the results</span>
+                    <span class="keyword-badge">In conclusion</span>
+                </div>
+            </div>
+            <div class="bg-gray-50 p-4 rounded mb-4">
+                <h3 class="text-lg font-bold mb-2">Report on Student Cafeteria Satisfaction</h3>
+                <p class="mb-3"><strong>Introduction</strong><br>The purpose of this report is to present the findings of a survey conducted among students regarding their satisfaction with the college cafeteria facilities and services. The survey was completed by 150 students across all departments.</p>
+                <p class="mb-3"><strong>Findings</strong><br>It was found that 65% of respondents visit the cafeteria at least three times per week. The majority of students (72%) rated the food quality as "average," while 15% considered it "good" and 13% "poor."</p>
+                <p class="mb-3">A significant number of students (58%) complained about the limited vegetarian and vegan options available. According to the data, 82% of respondents believe the prices are too high compared to local alternatives.</p>
+                <p class="mb-3">In contrast, the cleanliness of the facilities received positive feedback, with 78% rating it as "good" or "excellent." The findings indicate that waiting times during peak hours are the most common complaint, mentioned by 67% of participants.</p>
+                <p class="mb-3"><strong>Recommendations</strong><br>Based on the results, it is recommended that:
+                <ul class="list-disc pl-5 mb-3">
+                    <li>The cafeteria expands its range of vegetarian and vegan meals</li>
+                    <li>Price reductions or student discounts are introduced</li>
+                    <li>Additional staff are employed during busy periods to reduce waiting times</li>
+                </ul>
+                </p>
+                <p class="mb-3"><strong>Conclusion</strong><br>In conclusion, while the cafeteria facilities are generally clean and well-maintained, improvements in food variety, pricing, and service speed would significantly enhance student satisfaction.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="story-modal" class="example-modal">
+        <div class="example-content">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold">Short Story Example</h3>
+                <button onclick="closeModal('story-modal')" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="mb-6">
+                <h4 class="font-semibold mb-2">Keywords for Stories:</h4>
+                <div>
+                    <span class="keyword-badge">Little did I know</span>
+                    <span class="keyword-badge">Without warning</span>
+                    <span class="keyword-badge">Out of nowhere</span>
+                    <span class="keyword-badge">To my astonishment</span>
+                    <span class="keyword-badge">As if in slow motion</span>
+                    <span class="keyword-badge">My heart raced</span>
+                    <span class="keyword-badge">Time stood still</span>
+                    <span class="keyword-badge">In the blink of an eye</span>
+                    <span class="keyword-badge">Before I knew it</span>
+                    <span class="keyword-badge">From that day on</span>
+                </div>
+            </div>
+            <div class="bg-gray-50 p-4 rounded mb-4">
+                <h3 class="text-lg font-bold mb-2">The Unexpected Discovery</h3>
+                <p class="mb-3">It was an ordinary Tuesday morning when I made the discovery that would change everything. I had been cleaning out my grandmother's attic, a task I'd been putting off for months. The dusty space was filled with decades of accumulated memories - old photo albums, moth-eaten clothes, and boxes labeled in my grandmother's elegant handwriting.</p>
+                <p class="mb-3">Little did I know that one of those boxes contained a secret that had been hidden for over fifty years. As I lifted the lid of a small wooden chest, a bundle of yellowed letters tied with faded ribbon caught my eye. Without warning, my hands began to tremble as I recognized the handwriting - it was my grandfather's, who had died before I was born.</p>
+                <p class="mb-3">To my astonishment, the letters were addressed to a woman whose name I didn't recognize. As I carefully unfolded the first letter, my heart raced. The words revealed a love story completely unknown to our family - a passionate wartime romance between my grandfather and this mysterious woman while he was stationed overseas.</p>
+                <p class="mb-3">Time stood still as I read through each letter, piecing together a side of my grandfather I never knew existed. The final letter explained that their relationship had ended when he returned home to my grandmother, but he had kept the correspondence as a cherished memory.</p>
+                <p class="mb-3">From that day on, I saw my family history in a completely new light. The discovery taught me that everyone has hidden chapters in their lives, and sometimes, the most ordinary days can lead to the most extraordinary revelations.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <!-- Guide Section -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 text-gray-800 border-b pb-2">Writing Structures Guide</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Essay Card -->
+                <div class="writing-card bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300">
+                    <div class="gradient-bg text-white px-4 py-3">
+                        <h3 class="font-semibold text-lg flex items-center">
+                            <i class="fas fa-pen-fancy mr-2"></i> Opinion Essay
+                        </h3>
+                    </div>
+                    <div class="p-4">
+                        <p class="text-gray-600 mb-3">Structure your opinion clearly with arguments and examples.</p>
+                        <ol class="list-decimal pl-5 space-y-2 text-sm text-gray-700">
+                            <li><strong>Introduction:</strong> Paraphrase question + thesis statement</li>
+                            <li><strong>Body 1:</strong> First viewpoint + explanation/example</li>
+                            <li><strong>Body 2:</strong> Second viewpoint + explanation/example</li>
+                            <li><strong>Conclusion:</strong> Summarize + restate opinion</li>
+                        </ol>
+                        <div class="mt-4">
+                            <button onclick="openModal('opinion-essay-modal')" class="text-blue-600 text-sm font-medium flex items-center">
+                                See example & keywords <i class="fas fa-arrow-right ml-1 text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Letter/Email Card -->
+                <div class="writing-card bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300">
+                    <div class="gradient-bg text-white px-4 py-3">
+                        <h3 class="font-semibold text-lg flex items-center">
+                            <i class="fas fa-envelope mr-2"></i> Formal Letter/Email
+                        </h3>
+                    </div>
+                    <div class="p-4">
+                        <p class="text-gray-600 mb-3">Professional communication with clear purpose.</p>
+                        <ol class="list-decimal pl-5 space-y-2 text-sm text-gray-700">
+                            <li><strong>Salutation:</strong> Dear Mr/Ms [Last Name]</li>
+                            <li><strong>Opening:</strong> State purpose clearly</li>
+                            <li><strong>Body:</strong> Details in paragraphs (request/information)</li>
+                            <li><strong>Closing:</strong> Polite conclusion + signature</li>
+                        </ol>
+                        <div class="mt-4">
+                            <button onclick="openModal('formal-letter-modal')" class="text-blue-600 text-sm font-medium flex items-center">
+                                See example & keywords <i class="fas fa-arrow-right ml-1 text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review Card -->
+                <div class="writing-card bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300">
+                    <div class="gradient-bg text-white px-4 py-3">
+                        <h3 class="font-semibold text-lg flex items-center">
+                            <i class="fas fa-star mr-2"></i> Review
+                        </h3>
+                    </div>
+                    <div class="p-4">
+                        <p class="text-gray-600 mb-3">Share your evaluation of a book, film, or place.</p>
+                        <ol class="list-decimal pl-5 space-y-2 text-sm text-gray-700">
+                            <li><strong>Introduction:</strong> What you're reviewing + general opinion</li>
+                            <li><strong>Body 1:</strong> Description of key aspects</li>
+                            <li><strong>Body 2:</strong> Strengths and weaknesses</li>
+                            <li><strong>Conclusion:</strong> Recommendation + final thoughts</li>
+                        </ol>
+                        <div class="mt-4">
+                            <button onclick="openModal('review-modal')" class="text-blue-600 text-sm font-medium flex items-center">
+                                See example & keywords <i class="fas fa-arrow-right ml-1 text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Article Card -->
+                <div class="writing-card bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300">
+                    <div class="gradient-bg text-white px-4 py-3">
+                        <h3 class="font-semibold text-lg flex items-center">
+                            <i class="fas fa-newspaper mr-2"></i> Article
+                        </h3>
+                    </div>
+                    <div class="p-4">
+                        <p class="text-gray-600 mb-3">Engaging content for magazines or websites.</p>
+                        <ol class="list-decimal pl-5 space-y-2 text-sm text-gray-700">
+                            <li><strong>Title:</strong> Catchy and relevant</li>
+                            <li><strong>Introduction:</strong> Hook + overview</li>
+                            <li><strong>Body:</strong> Main points with examples</li>
+                            <li><strong>Conclusion:</strong> Summary + thought-provoking ending</li>
+                        </ol>
+                        <div class="mt-4">
+                            <button onclick="openModal('article-modal')" class="text-blue-600 text-sm font-medium flex items-center">
+                                See example & keywords <i class="fas fa-arrow-right ml-1 text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Report Card -->
+                <div class="writing-card bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300">
+                    <div class="gradient-bg text-white px-4 py-3">
+                        <h3 class="font-semibold text-lg flex items-center">
+                            <i class="fas fa-chart-bar mr-2"></i> Report
+                        </h3>
+                    </div>
+                    <div class="p-4">
+                        <p class="text-gray-600 mb-3">Factual presentation of information.</p>
+                        <ol class="list-decimal pl-5 space-y-2 text-sm text-gray-700">
+                            <li><strong>Title/Heading</strong></li>
+                            <li><strong>Introduction:</strong> Purpose + scope</li>
+                            <li><strong>Findings:</strong> Organized facts/data</li>
+                            <li><strong>Conclusion:</strong> Summary + recommendations</li>
+                        </ol>
+                        <div class="mt-4">
+                            <button onclick="openModal('report-modal')" class="text-blue-600 text-sm font-medium flex items-center">
+                                See example & keywords <i class="fas fa-arrow-right ml-1 text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Story Card -->
+                <div class="writing-card bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300">
+                    <div class="gradient-bg text-white px-4 py-3">
+                        <h3 class="font-semibold text-lg flex items-center">
+                            <i class="fas fa-book-open mr-2"></i> Short Story
+                        </h3>
+                    </div>
+                    <div class="p-4">
+                        <p class="text-gray-600 mb-3">Narrative with clear plot development.</p>
+                        <ol class="list-decimal pl-5 space-y-2 text-sm text-gray-700">
+                            <li><strong>Setting:</strong> Time, place, characters</li>
+                            <li><strong>Problem:</strong> Conflict or challenge</li>
+                            <li><strong>Events:</strong> Plot development</li>
+                            <li><strong>Resolution:</strong> How it ends</li>
+                        </ol>
+                        <div class="mt-4">
+                            <button onclick="openModal('story-modal')" class="text-blue-600 text-sm font-medium flex items-center">
+                                See example & keywords <i class="fas fa-arrow-right ml-1 text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI Corrector Section -->
+        <section class="bg-white rounded-xl shadow-lg overflow-hidden mb-12">
+            <div class="gradient-bg text-white px-6 py-4">
+                <h2 class="text-2xl font-bold flex items-center">
+                    <i class="fas fa-robot mr-3"></i> AI Writing Corrector
+                </h2>
+                <p class="text-blue-100 mt-1">Get instant feedback on your B2 level writing</p>
+            </div>
+            
+            <div class="p-6">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- Input Area -->
+                    <div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 font-medium mb-2">Select Writing Type</label>
+                            <select class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                <option>Opinion Essay</option>
+                                <option>Formal Letter/Email</option>
+                                <option>Review</option>
+                                <option>Article</option>
+                                <option>Report</option>
+                                <option>Short Story</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label class="block text-gray-700 font-medium mb-2">Your Writing</label>
+                            <textarea id="writing-input" class="w-full h-64 px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="Paste your B2 level writing here (150-250 words)..."></textarea>
+                        </div>
+                        
+                        <div class="flex justify-between items-center">
+                            <div class="flex items-center space-x-2">
+                                <button id="check-grammar" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition flex items-center">
+                                    <i class="fas fa-spell-check mr-2"></i> Check Grammar
+                                </button>
+                                <button id="full-analysis" class="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition flex items-center">
+                                    <i class="fas fa-search mr-2"></i> Full Analysis
+                                </button>
+                            </div>
+                            <div class="text-sm text-gray-500" id="word-count">0 words</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Output Area -->
+                    <div>
+                        <div class="bg-gray-50 rounded-lg p-4">
+                            <div class="flex justify-between items-center mb-3">
+                                <h3 class="font-medium text-gray-700">Correction Results</h3>
+                                <div class="flex space-x-2">
+                                    <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded">Grammar</span>
+                                    <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded">Vocabulary</span>
+                                    <span class="px-2 py-1 bg-indigo-100 text-indigo-800 text-xs rounded">Structure</span>
+                                </div>
+                            </div>
+                            
+                            <div id="corrector-output" class="corrector-output bg-white p-4 rounded border">
+                                <div class="text-center text-gray-400 py-10">
+                                    <i class="fas fa-comment-dots text-3xl mb-2"></i>
+                                    <p>Your corrected writing will appear here</p>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-4 grid grid-cols-3 gap-2">
+                                <div class="bg-blue-50 p-2 rounded text-center">
+                                    <div class="text-blue-800 font-bold">Grammar Score</div>
+                                    <div class="text-2xl font-bold text-blue-600" id="grammar-score">--</div>
+                                </div>
+                                <div class="bg-green-50 p-2 rounded text-center">
+                                    <div class="text-green-800 font-bold">Vocabulary Score</div>
+                                    <div class="text-2xl font-bold text-green-600" id="vocab-score">--</div>
+                                </div>
+                                <div class="bg-indigo-50 p-2 rounded text-center">
+                                    <div class="text-indigo-800 font-bold">Structure Score</div>
+                                    <div class="text-2xl font-bold text-indigo-600" id="structure-score">--</div>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-4">
+                                <h4 class="font-medium text-gray-700 mb-2">Suggestions for Improvement</h4>
+                                <div id="suggestions" class="text-sm text-gray-600">
+                                    <div class="flex items-start mb-2">
+                                        <i class="fas fa-lightbulb text-yellow-500 mt-1 mr-2"></i>
+                                        <span>Write at least 150 words to get detailed feedback</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tips Section -->
+        <section class="bg-indigo-50 rounded-xl p-6 mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-gray-800">B2 Writing Exam Tips</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white p-4 rounded-lg shadow-sm">
+                    <h3 class="font-semibold text-lg text-indigo-700 mb-2 flex items-center">
+                        <i class="fas fa-clock mr-2"></i> Time Management
+                    </h3>
+                    <ul class="list-disc pl-5 space-y-1 text-gray-700">
+                        <li>Spend 5 minutes planning your structure</li>
+                        <li>Allocate time for proofreading (last 5 minutes)</li>
+                        <li>Practice writing within the word limit</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-sm">
+                    <h3 class="font-semibold text-lg text-indigo-700 mb-2 flex items-center">
+                        <i class="fas fa-check-circle mr-2"></i> Common Mistakes
+                    </h3>
+                    <ul class="list-disc pl-5 space-y-1 text-gray-700">
+                        <li>Inconsistent verb tenses</li>
+                        <li>Overusing simple sentences</li>
+                        <li>Informal language in formal writing</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-sm">
+                    <h3 class="font-semibold text-lg text-indigo-700 mb-2 flex items-center">
+                        <i class="fas fa-chart-line mr-2"></i> Scoring Criteria
+                    </h3>
+                    <ul class="list-disc pl-5 space-y-1 text-gray-700">
+                        <li>Content (task achievement)</li>
+                        <li>Communicative achievement</li>
+                        <li>Organization and cohesion</li>
+                        <li>Language (vocabulary & grammar)</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-sm">
+                    <h3 class="font-semibold text-lg text-indigo-700 mb-2 flex items-center">
+                        <i class="fas fa-magic mr-2"></i> Advanced Techniques
+                    </h3>
+                    <ul class="list-disc pl-5 space-y-1 text-gray-700">
+                        <li>Use linking words for cohesion</li>
+                        <li>Vary sentence structures</li>
+                        <li>Include idiomatic expressions appropriately</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <h3 class="text-xl font-bold mb-2">B2 English Writing Guide</h3>
+                    <p class="text-gray-400">Your companion for exam success</p>
+                </div>
+                <div class="flex space-x-4">
+                    <a href="#" class="hover:text-blue-300 transition">
+                        <i class="fab fa-twitter text-lg"></i>
+                    </a>
+                    <a href="#" class="hover:text-blue-300 transition">
+                        <i class="fab fa-facebook text-lg"></i>
+                    </a>
+                    <a href="#" class="hover:text-blue-300 transition">
+                        <i class="fab fa-instagram text-lg"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-6 pt-6 text-sm text-gray-400">
+                <p>© 2023 B2 English Writing Guide. All practice materials are based on Cambridge English and IELTS exam formats.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Word count functionality
+        const writingInput = document.getElementById('writing-input');
+        const wordCount = document.getElementById('word-count');
+        
+        writingInput.addEventListener('input', function() {
+            const text = this.value.trim();
+            const words = text ? text.split(/\s+/).length : 0;
+            wordCount.textContent = `${words} words`;
+            
+            // Change color based on word count
+            if (words < 150) {
+                wordCount.classList.add('text-red-500');
+                wordCount.classList.remove('text-green-500', 'text-gray-500');
+            } else if (words > 250) {
+                wordCount.classList.add('text-red-500');
+                wordCount.classList.remove('text-green-500', 'text-gray-500');
+            } else {
+                wordCount.classList.add('text-green-500');
+                wordCount.classList.remove('text-red-500', 'text-gray-500');
+            }
+        });
+        
+        // Mock correction functionality (in a real app, this would call an API)
+        document.getElementById('check-grammar').addEventListener('click', function() {
+            const text = writingInput.value.trim();
+            if (!text) {
+                alert('Please enter some text to check');
+                return;
+            }
+            
+            // Mock correction - in reality this would come from an API
+            mockCorrection(text, 'grammar');
+        });
+        
+        document.getElementById('full-analysis').addEventListener('click', function() {
+            const text = writingInput.value.trim();
+            if (!text) {
+                alert('Please enter some text to analyze');
+                return;
+            }
+            
+            // Mock correction - in reality this would come from an API
+            mockCorrection(text, 'full');
+        });
+        
+        function mockCorrection(text, type) {
+            // Show loading state
+            const output = document.getElementById('corrector-output');
+            output.innerHTML = `
+                <div class="text-center py-10">
+                    <i class="fas fa-spinner fa-spin text-2xl text-blue-500 mb-2"></i>
+                    <p>Analyzing your writing...</p>
+                </div>
+            `;
+            
+            // Simulate API delay
+            setTimeout(() => {
+                // This is mock data - in a real app you'd get this from an API
+                const mockData = {
+                    correctedText: highlightIssues(text),
+                    grammarScore: Math.floor(Math.random() * 30) + 70,
+                    vocabScore: Math.floor(Math.random() * 30) + 70,
+                    structureScore: Math.floor(Math.random() * 30) + 70,
+                    suggestions: [
+                        "Try using more linking words to improve cohesion",
+                        "Some sentences are too long - consider breaking them up",
+                        "Use more varied vocabulary to achieve higher marks",
+                        "Check your article usage (a/an/the)"
+                    ]
+                };
+                
+                // Display results
+                output.innerHTML = mockData.correctedText;
+                
+                // Update scores
+                document.getElementById('grammar-score').textContent = mockData.grammarScore;
+                document.getElementById('vocab-score').textContent = mockData.vocabScore;
+                document.getElementById('structure-score').textContent = mockData.structureScore;
+                
+                // Update suggestions
+                const suggestionsEl = document.getElementById('suggestions');
+                suggestionsEl.innerHTML = mockData.suggestions.map(suggestion => `
+                    <div class="flex items-start mb-2">
+                        <i class="fas fa-lightbulb text-yellow-500 mt-1 mr-2"></i>
+                        <span>${suggestion}</span>
+                    </div>
+                `).join('');
+                
+            }, 1500);
+        }
+        
+        // Function to highlight issues in text (mock implementation)
+        function highlightIssues(text) {
+            // Split into sentences for mock analysis
+            const sentences = text.split(/(?<=[.!?])\s+/);
+            
+            // Randomly select some sentences to highlight as examples
+            return sentences.map(sentence => {
+                // 30% chance to highlight as grammar issue
+                if (Math.random() < 0.3) {
+                    return `<span class="highlight-grammar relative">${sentence}
+                            <span class="suggestion-tooltip">Consider: "${sentence.replace(/I is/, 'I am')}"</span>
+                            </span>`;
+                }
+                // 20% chance to highlight as vocab issue
+                else if (Math.random() < 0.2) {
+                    return `<span class="highlight-vocab relative">${sentence}
+                            <span class="suggestion-tooltip">Advanced alternative: "utilize" instead of "use"</span>
+                            </span>`;
+                }
+                // 15% chance to highlight as structure issue
+                else if (Math.random() < 0.15) {
+                    return `<span class="highlight-structure relative">${sentence}
+                            <span class="suggestion-tooltip">This could be two shorter sentences for clarity</span>
+                            </span>`;
+                }
+                return sentence;
+            }).join(' ');
+        }
+        
+        // Modal functions
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+        }
+        
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+        
+        // Close modal when clicking outside of it
+        window.onclick = function(event) {
+            if (event.target.className === 'example-modal') {
+                event.target.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
